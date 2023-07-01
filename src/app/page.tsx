@@ -20,8 +20,8 @@ export default function Home() {
   const addTodo = async () => {
     if (newTodo.trim() !== '') {
       const { data, error } = await supabase
-        .from('todos')
-        .insert([{ task: newTodo.trim() }]);
+        .from('Todos_table')
+        .insert([{ description: newTodo.trim() }]);
       if (error) {
         console.error('Error adding todo:', error);
       } else {
@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   const deleteTodo = async (id: number) => {
-    const { error } = await supabase.from('todos').delete().eq('id', id);
+    const { error } = await supabase.from('Todos_table').delete().eq('id', id);
     if (error) {
       console.error('Error deleting todo:', error);
     } else {
